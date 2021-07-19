@@ -41,8 +41,21 @@ TEST(sprintf, NoFormatOperations)
     STRCMP_EQUAL("hey", output);
 }
 
+TEST(sprintf, NoFormatOperations2)
+{
+    expect("hey");
+    given(sprintf(output, "hey"));
+}
+
+TEST(sprintf, NoFormatOperations3)
+{
+    char output[5];
+    LONGS_EQUAL(4, sprintf(output, "hey"));
+    STRCMP_EQUAL("hey", output);
+}
+
 TEST(sprintf, InsertString)
 {
     expect("Hello World\n");
-    given(sprintf(output, "Hello %s\n", "Worls"));
+    given(sprintf(output, "Hello %s\n", "World"));
 }

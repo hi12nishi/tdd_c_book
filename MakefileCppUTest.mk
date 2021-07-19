@@ -10,7 +10,7 @@ COMPONENT_NAME = BookCode_CppUTest
 CPP_PLATFORM = Gcc
 PROJECT_HOME_DIR = .
 
-#SRC_DIRS = \
+SRC_DIRS = \
 	src/HomeAutomation \
 	src/util\
 	src/LedDriver \
@@ -23,12 +23,14 @@ PROJECT_HOME_DIR = .
 TEST_SRC_DIRS = \
 	.\
 	tests/stdio\
+	tests/LedDriver\
 	tests\
 
 	
 INCLUDE_DIRS =\
   .\
   $(CPPUTEST_HOME)/include\
+  include/LedDriver\
 
 
 #MOCKS_SRC_DIRS = \
