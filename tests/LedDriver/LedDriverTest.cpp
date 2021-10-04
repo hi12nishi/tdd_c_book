@@ -60,4 +60,29 @@ TEST(LedDriver, TurnOffLedOne)
     LONGS_EQUAL(0, virtualLeds);
 }
 
+TEST(LedDriver, TurnOnMultipleLeds)
+{
+    LedDriver_TurnOn(9);
+    LedDriver_TurnOn(8);
+    LONGS_EQUAL(0x180, virtualLeds);
+}
 
+TEST(LedDriver, TurnOffAnyLed)
+{
+    LedDriver_TurnAllOn();
+    LedDriver_TurnOff(8);
+    LONGS_EQUAL(0xff7f, virtualLeds);
+}
+
+TEST(LedDriver, AllOn)
+{
+    LedDriver_TurnAllOn();
+    LONGS_EQUAL(0xffff, virtualLeds);
+}
+
+TEST(LedDriver, LedMemoryIsNotReadable)
+{
+    virtualLeds = 0xffff;
+    LedDriver_TurnOn(8);  // TurnOnでledsImageに記録されている状態が変化し、virtualLedsにその状態を代入するから0xffffは影響がない
+    LONGS_EQUAL(0x80, virtualLeds);
+}
