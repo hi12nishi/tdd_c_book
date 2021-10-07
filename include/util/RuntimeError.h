@@ -1,9 +1,9 @@
 /***
  * Excerpted from "Test-Driven Development for Embedded C",
  * published by The Pragmatic Bookshelf.
- * Copyrights apply to this code. It may not be used to create training material, 
+ * Copyrights apply to this code. It may not be used to create training material,
  * courses, books, articles, and the like. Contact us if you are in doubt.
- * We make no guarantees that this code is fit for any purpose. 
+ * We make no guarantees that this code is fit for any purpose.
  * Visit http://www.pragmaticprogrammer.com/titles/jgade for more book information.
 ***/
 /*- ------------------------------------------------------------------ -*/
@@ -24,67 +24,14 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-extern "C"
-{
-    #include "LedDriver.h"
-    #include "RuntimeError.h"
-}
 
-enum
-{
-    ALL_LEDS_ON  = ~0,
-    ALL_LEDS_OFF = ~ALL_LEDS_ON
-};
-static uint16_t* ledsAddress;
-static uint16_t ledsImage;
+#ifndef D_RuntimeError_H
+#define D_RuntimeError_H
 
-static uint16_t convertLedNumberToBit(int ledNumber)
-{
-    return 1 << (ledNumber - 1);
-}
+void RuntimeError(const char * message, int parameter,
+                const char * file, int line);
 
-static void updateHardware()
-{
-    *ledsAddress = ledsImage;
-}
+#define RUNTIME_ERROR(description, parameter)\
+    RuntimeError(description, parameter, __FILE__, __LINE__)
 
-void LedDriver_Create(uint16_t* address)
-{
-    ledsAddress = address;
-    ledsImage = ALL_LEDS_OFF;
-    updateHardware();
-}
-
-void LedDriver_Destroy()
-{
-}
-
-void LedDriver_TurnOn(int ledNumber)
-{
-    if (ledNumber <= 0 || ledNumber > 16)
-    {
-        RUNTIME_ERROR("Led Driver: out-of-bounds LED", ledNumber);
-        return;
-    }
-
-    ledsImage |= convertLedNumberToBit(ledNumber);
-    updateHardware();
-}
-
-void LedDriver_TurnOff(int ledNumber)
-{
-    if (ledNumber <= 0 || ledNumber > 16)
-    {
-        RUNTIME_ERROR("Led Driver: out-of-bounds LED", ledNumber);
-        return;
-    }
-
-    ledsImage &= ~(convertLedNumberToBit(ledNumber));
-    updateHardware();
-}
-
-void LedDriver_TurnAllOn()
-{
-    ledsImage = ALL_LEDS_ON;
-    updateHardware();
-}
+#endif

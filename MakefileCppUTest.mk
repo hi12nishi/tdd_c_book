@@ -31,9 +31,9 @@ INCLUDE_DIRS =\
   .\
   $(CPPUTEST_HOME)/include\
   include/LedDriver\
+  include/util\
 
-
-#MOCKS_SRC_DIRS = \
+MOCKS_SRC_DIRS = \
 	mocks\
 	
 CPPUTEST_WARNINGFLAGS = -Wall -Wswitch-default -Werror 
