@@ -36,7 +36,7 @@ INCLUDE_DIRS =\
 MOCKS_SRC_DIRS = \
 	mocks\
 	
-CPPUTEST_WARNINGFLAGS = -Wall -Wswitch-default -Werror 
+CPPUTEST_WARNINGFLAGS = -Wall -Wswitch-default -Werror -Wno-error=unused-function
 #CPPUTEST_CFLAGS = -std=c89 
 CPPUTEST_CFLAGS += -Wall -Wstrict-prototypes -pedantic
 LD_LIBRARIES = -lpthread

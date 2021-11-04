@@ -121,3 +121,8 @@ TEST(LedDriver, OutOfBoundsProducesRuntimeError)
     STRCMP_EQUAL("Led Driver: out-of-bounds LED", RuntimeErrorStub_GetLastError());
     LONGS_EQUAL(-1, RuntimeErrorStub_GetLastParameter());
 }
+
+IGNORE_TEST(LedDriver, OutOfBoundsToDo)
+{
+    /* TODO 実行中に何をするべきだろうか? */
+}

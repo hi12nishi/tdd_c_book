@@ -20,7 +20,7 @@
 
 int main()
 {
-    const int argc = 2;
-    const char* argv[] = {"", "-gLedDriver"};
+    const int argc = 3;
+    const char* argv[] = {"", "-gLedDriver", "-v"};
     return RUN_ALL_TESTS(argc, argv);
 }
